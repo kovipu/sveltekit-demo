@@ -11,4 +11,5 @@ Node.js & NPM, fairly recent version
 ```
 npm init svelte sveltekit-demo
 ```
+Pick "skeleton project" and answer no to everything for now.
 
