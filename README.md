@@ -156,9 +156,9 @@ Showcase how styles work in Svelte.
 ```html
 <script>
 	import WappuStatus from './WappuStatus.svelte';
-	
+
 	let wappuLength = 0;
-		
+
 	const handleClick = () => wappuLength++;
 </script>
 
@@ -189,3 +189,26 @@ npm init svelte sveltekit-demo
 ```
 Pick "skeleton project" and answer no to everything for now.
 
+* Showcase routes
+* Showcase api endpoint
+* Showcase page endpoint
+
+```js
+import db from '$lib/database';
+ 
+/** @type {import('./__types/[id]').RequestHandler} */
+export async function get({ params }) {
+  // `params.id` comes from [id].js
+  const item = await db.get(params.id);
+ 
+  if (item) {
+    return {
+      body: { item }
+    };
+  }
+ 
+  return {
+    status: 404
+  };
+}
+```
