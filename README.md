@@ -96,8 +96,6 @@ Create a new component `WappuStatus.svelte` and move logic in there.
 	
 	let wappuLength = 0;
 	
-	const MAX_WAPPU_LENGTH = 20;
-	
 	const handleClick = () => wappuLength++;
 </script>
 
@@ -148,6 +146,35 @@ So we need to hint the compiler what we want to be reactive.
 		Wappu on liian pitkä!
 	</p>
 {/if}
+```
+
+### Add style
+
+Explain component scoped styles.
+Showcase how styles work in Svelte.
+
+```html
+<script>
+	import WappuStatus from './WappuStatus.svelte';
+	
+	let wappuLength = 0;
+		
+	const handleClick = () => wappuLength++;
+</script>
+
+<button on:click={handleClick}>Lisää yksi</button>
+
+<WappuStatus {wappuLength} />
+
+<p>
+	Lohenvärinen lause
+</p>
+
+<style lang="scss">
+	p {
+		background-color: salmon;
+	}
+</style>
 ```
 
 ## Part 2: SvelteKit
