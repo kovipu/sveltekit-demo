@@ -38,7 +38,36 @@ Template syntax: everything inside `{}` in the template is intepreted as JavaScr
 Explain reactivity. The output automatically reacts to state change. 
 In React, this would require the use of hooks.
 
-Explain event handler initialization. Show moving it inside the `script`-tag.
+Explain event handler initialization.
+Show moving it inside the `script`-tag.
+
+### Showcase template syntax a bit more
+
+```
+<script>
+	let wappuLength = 0;
+	
+	const MAX_WAPPU_LENGTH = 20;
+	
+	const handleClick = () => wappuLength++;
+</script>
+
+<button on:click={handleClick}>Lisää yksi</button>
+
+<h1>
+	Wappu on {wappuLength} päivää
+</h1>
+
+{#if wappuLength > MAX_WAPPU_LENGTH}
+	<h2>
+		Wappu on liian pitkä!
+	</h2>
+{:else}
+	<h2>
+		Wappu on sopivan pituinen.
+	</h2>
+{/if}
+```
 
 ## Part 2: SvelteKit
 ### Prerequisite
