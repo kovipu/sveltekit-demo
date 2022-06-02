@@ -43,7 +43,7 @@ Show moving it inside the `script`-tag.
 
 ### Showcase template syntax a bit more
 
-```
+```html
 <script>
 	let wappuLength = 0;
 	
@@ -104,6 +104,50 @@ Create a new component `WappuStatus.svelte` and move logic in there.
 <button on:click={handleClick}>Lisää yksi</button>
 
 <WappuStatus {wappuLength} />
+```
+
+### Explain reactivity in scripts
+
+This causes a problem, explain why.
+```html
+<script>
+	export let wappuLength;
+	
+	const MAX_WAPPU_LENGTH = 20;
+	
+	const isWappuTooLong = wappuLength > MAX_WAPPU_LENGTH;
+</script>
+
+<p>
+	Wappu kestää {wappuLength} päivää
+</p>
+
+{#if isWappuTooLong}
+	<p>
+		Wappu on liian pitkä!
+	</p>
+{/if}
+```
+
+So we need to hint the compiler what we want to be reactive.
+```html
+<script>
+	export let wappuLength;
+	
+	const MAX_WAPPU_LENGTH = 20;
+	
+	$: isWappuTooLong = wappuLength > MAX_WAPPU_LENGTH;
+</script>
+
+<p>
+	Wappu kestää {wappuLength} päivää
+</p>
+
+{#if isWappuTooLong}
+	<p>
+		Wappu on liian pitkä!
+	</p>
+{/if}
 ```
 
 ## Part 2: SvelteKit
