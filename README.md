@@ -55,18 +55,55 @@ Show moving it inside the `script`-tag.
 <button on:click={handleClick}>Lisää yksi</button>
 
 <h1>
-	Wappu on {wappuLength} päivää
+	Wappu kestää {wappuLength} päivää
 </h1>
 
 {#if wappuLength > MAX_WAPPU_LENGTH}
-	<h2>
+	<p>
 		Wappu on liian pitkä!
-	</h2>
+	</p>
 {:else}
-	<h2>
+	<p>
 		Wappu on sopivan pituinen.
-	</h2>
+	</p>
 {/if}
+```
+
+### Showcase component splitting
+
+Create a new component `WappuStatus.svelte` and move logic in there.
+
+```html
+<script>
+	export let wappuLength;
+	
+	const MAX_WAPPU_LENGTH = 20;
+</script>
+
+<p>
+	Wappu kestää {wappuLength} päivää
+</p>
+
+{#if wappuLength > MAX_WAPPU_LENGTH}
+	<p>
+		Wappu on liian pitkä!
+	</p>
+{/if}
+```
+```html
+<script>
+	import WappuStatus from './WappuStatus.svelte';
+	
+	let wappuLength = 0;
+	
+	const MAX_WAPPU_LENGTH = 20;
+	
+	const handleClick = () => wappuLength++;
+</script>
+
+<button on:click={handleClick}>Lisää yksi</button>
+
+<WappuStatus {wappuLength} />
 ```
 
 ## Part 2: SvelteKit
